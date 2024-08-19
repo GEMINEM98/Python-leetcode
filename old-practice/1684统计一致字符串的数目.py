@@ -1,3 +1,5 @@
+from typing import List
+
 
 # https://leetcode-cn.com/problems/count-the-number-of-consistent-strings/
 

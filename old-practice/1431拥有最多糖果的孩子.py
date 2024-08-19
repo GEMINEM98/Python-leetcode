@@ -1,3 +1,5 @@
+from typing import List
+
 
 # https://leetcode-cn.com/problems/kids-with-the-greatest-number-of-candies/
 

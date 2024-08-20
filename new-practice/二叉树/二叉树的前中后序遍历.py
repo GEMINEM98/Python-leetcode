@@ -37,7 +37,7 @@ class TreeNode:
         self.right = right
 
 # 前序遍历：
-def preorder_traversal(root):
+def preorder_traversal(root) -> list:
     if root is None:
         return []
 
@@ -55,7 +55,7 @@ def preorder_traversal(root):
     return result
 
 # 中序遍历：
-def inorder_traversal(root):
+def inorder_traversal(root) -> list:
     if root is None:
         return []
 
@@ -73,7 +73,7 @@ def inorder_traversal(root):
     return result
 
 # 后序遍历：
-def postorder_traversal(root):
+def postorder_traversal(root) -> list:
     if root is None:
         return []
 

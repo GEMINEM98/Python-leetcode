@@ -19,6 +19,26 @@ class TreeNode:
         self.right = right
 
 
+class Solution:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        res = []
+        path = ("")
+        self.dfs(root, path, res)
+        return res
+
+    def dfs(self, root, path, res):
+        if root is None:
+            return
+        path += str(root.val)
+
+        if root.left is None and root.right is None:
+            res.append(path)
+        else:
+            self.dfs(root.left, path+'->', res)
+            self.dfs(root.right, path+'->', res)
+        return
+
+
 # class Solution:
 #     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
 #         res = []
@@ -40,22 +60,22 @@ class TreeNode:
 #             self.dfs(res, root.right, path)
 
 
-class Solution:
-    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-        res = []
-        path = ""
-        self.dfs(res, root, path)
-        return res
-
-    def dfs(self, res: list, root: Optional[TreeNode], path: string) -> None:
-        if not root:
-            return
-        path += str(root.val)
-        if root.left is None and root.right is None:
-            res.append(path)
-        else:
-            self.dfs(res, root.left, path+"->")
-            self.dfs(res, root.right, path+"->")
+# class Solution:
+#     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+#         res = []
+#         path = ""
+#         self.dfs(res, root, path)
+#         return res
+#
+#     def dfs(self, res: list, root: Optional[TreeNode], path: string) -> None:
+#         if not root:
+#             return
+#         path += str(root.val)
+#         if root.left is None and root.right is None:
+#             res.append(path)
+#         else:
+#             self.dfs(res, root.left, path+"->")
+#             self.dfs(res, root.right, path+"->")
 
 
 if __name__ == '__main__':

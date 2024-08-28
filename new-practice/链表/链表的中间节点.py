@@ -21,15 +21,10 @@ class Solution:
 
         slow = head
         fast = head
-        n = 1
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
-            n += 2
-        if n % 2 == 0:
-            return slow.next
-        else:
-            return slow
+        return slow
 
 
 def print_linked_list(head: Optional[ListNode]):

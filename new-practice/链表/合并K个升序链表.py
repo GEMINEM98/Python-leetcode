@@ -5,15 +5,7 @@
 
 请你将所有链表合并到一个升序链表中，返回合并后的链表。
 '''
-
-'''
-暴力解：
-
-两两进行合并，直到合并完最后一个链表即可
-'''
-
-
-
+import heapq
 from typing import Optional, List
 
 
@@ -23,7 +15,45 @@ class ListNode:
         self.val = val
         self.next = next
 
+
+
+
+'''
+最小堆：：
+最小堆的根节点永远是最小的
+'''
+
 class Solution:
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if lists == []:
+            return None
+        min_heap = []
+
+        for i in range(len(lists)):
+            if lists[i] is not None:
+                heapq.heappush(min_heap, (lists[i].val, i, lists[i]))
+
+        head = ListNode(0)
+        cur = head
+        while min_heap:
+            # 获取最小节点，接到结果链表中
+            smallest, index, node = heapq.heappop(min_heap)
+            cur.next = ListNode(smallest, None)
+            cur = cur.next
+            if node.next:
+                heapq.heappush(min_heap, (node.next.val, index, node.next))
+        return head.next
+
+
+
+
+'''
+暴力解：
+两两进行合并，直到合并完最后一个链表即可
+'''
+
+class Solution1:
 
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if lists == []:
@@ -32,7 +62,7 @@ class Solution:
         j = 1
         i = lists[0]
         while j < len(lists):
-            p = Solution().mergeTwoLists(i, lists[j])
+            p = Solution1().mergeTwoLists(i, lists[j])
             i = p
             j += 1
         return i
@@ -67,12 +97,26 @@ def main():
     # 将链表放入列表
     lists = [list1, list2, list3]
 
-    # 创建Solution对象并调用mergeKLists
+
+
+    # 最小堆解法：
     solution = Solution()
     merged_list = solution.mergeKLists(lists)
 
     # 输出合并后的链表
     current = merged_list
+    while current:
+        print(current.val, end=" -> ")
+        current = current.next
+    print("None")  # 表示链表结束
+
+
+    # 暴力解法：两两相排
+    solution1 = Solution1()
+    merged_list1 = solution1.mergeKLists(lists)
+
+    # 输出合并后的链表
+    current = merged_list1
     while current:
         print(current.val, end=" -> ")
         current = current.next

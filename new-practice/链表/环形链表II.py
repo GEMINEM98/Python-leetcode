@@ -19,7 +19,57 @@ class ListNode:
         self.next = None
 
 class Solution:
+
+
+    #  -----------------------------------------------------------------    set()解法
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        s = set()
+        cur = head
+        while cur is not None:
+            s.add(cur)
+            cur = cur.next
+            if cur in s:
+                return cur
+        return None
+
+        #  -----------------------------------------------------------------    快慢指针解法
+    # def detectCycle2(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+
+
+def main():
+    # 创建链表：1 -> 2 -> 3 -> 4 -> 2 (形成一个循环)
+    node1 = ListNode(1)
+    node2 = ListNode(2)
+    node3 = ListNode(3)
+    node4 = ListNode(4)
+
+    node1.next = node2
+    node2.next = node3
+    node3.next = node4
+    node4.next = node2  # 形成环，node4 指向 node2
+
+    solution = Solution()
+
+
+    cycle_node = solution.detectCycle(node1)
+    if cycle_node:
+        print(f"Cycle detected at node with value: {cycle_node.val}")
+    else:
+        print("No cycle detected")
+
+
+    cycle_node = solution.detectCycle2(node1)
+    if cycle_node:
+        print(f"Cycle detected at node with value: {cycle_node.val}")
+    else:
+        print("No cycle detected")
+
+
+if __name__ == "__main__":
+    main()
+
+
 
 
 

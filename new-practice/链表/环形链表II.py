@@ -32,8 +32,6 @@ class Solution:
                 return cur
         return None
 
-        #  -----------------------------------------------------------------    快慢指针解法
-    # def detectCycle2(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
 
 
@@ -58,12 +56,6 @@ def main():
     else:
         print("No cycle detected")
 
-
-    cycle_node = solution.detectCycle2(node1)
-    if cycle_node:
-        print(f"Cycle detected at node with value: {cycle_node.val}")
-    else:
-        print("No cycle detected")
 
 
 if __name__ == "__main__":
